@@ -18,9 +18,11 @@ game_over = False
 
 # game loop - while game loop is not false then continue to loop
 while not game_over:
-    # user interactions
-    scr.onkey(ekans.turn_left, "a")
-    scr.onkey(ekans.turn_right, "d")
+    # user interactions - using up, down, left, right
+    scr.onkey(ekans.turn_up, "Up")
+    scr.onkey(ekans.turn_down, "Down")
+    scr.onkey(ekans.turn_left, "Left")
+    scr.onkey(ekans.turn_right, "Right")
 
     ekans.move_forward()
     scr.update()

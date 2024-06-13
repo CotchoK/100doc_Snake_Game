@@ -2,8 +2,14 @@ from turtle import Turtle
 
 # CONSTANTS -START ###
 MOVE_DISTANCE = 20
-TURN_ANGLE = 90
+#TURN_ANGLE = 90
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
+
 # CONSTANTS -END ###
+
 
 class Snake:
 
@@ -43,15 +49,33 @@ class Snake:
 
     def turn_left(self):
         """
-        Turns the head of the snake body left 90 degrees
+        Turns the head of the snake body to the left direction (180 Turtle Degrees)
         :return:
         """
-        self.snake_body[0].setheading(self.snake_body[0].heading() + TURN_ANGLE)
+        if self.snake_body[0].heading() == UP or self.snake_body[0].heading() == DOWN:
+            self.snake_body[0].setheading(LEFT)
 
     def turn_right(self):
         """
-        Turns the head of the snake body right 90 degrees
+        Turns the head of the snake body to the right direction (0 Turtle Degrees)
         :return:
         """
-        self.snake_body[0].setheading(self.snake_body[0].heading() - TURN_ANGLE)
+        if self.snake_body[0].heading() == UP or self.snake_body[0].heading() == DOWN:
+            self.snake_body[0].setheading(RIGHT)
 
+    def turn_up(self):
+        """
+        Turns the head of the snake body to the up direction (90 Turtle Degrees)
+        :return:
+        """
+        if self.snake_body[0].heading() == LEFT or self.snake_body[0].heading() == RIGHT:
+            self.snake_body[0].setheading(UP)
+
+
+    def turn_down(self):
+        """
+        Turns the head of the snake body to the down direction (270 Turtle Degrees)
+        :return:
+        """
+        if self.snake_body[0].heading() == LEFT or self.snake_body[0].heading() == RIGHT:
+            self.snake_body[0].setheading(DOWN)
