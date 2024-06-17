@@ -2,6 +2,7 @@ from turtle import Screen
 import snake
 import time
 import food
+import scoreboard
 
 # define screen object attributes
 scr = Screen()
@@ -15,6 +16,8 @@ scr.listen()
 ekans = snake.Snake()
 # create good instance
 food = food.Food()
+#create scoreboard instance
+scoreboard = scoreboard.Scoreboard()
 
 # user interactions - using up, down, left, right
 scr.onkey(ekans.turn_up, "Up")
@@ -34,7 +37,7 @@ while not game_over:
     # Detect collision with snake head and food
     if ekans.snake_body[0].distance(food) < 15:
         food.refresh_location()
-
+        scoreboard.refresh_score()
 
 # only exit the screen on click of mouse - keeps window visible
 scr.exitonclick()
