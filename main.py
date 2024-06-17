@@ -4,9 +4,12 @@ import time
 import food
 import scoreboard
 
+SCREEN_WIDTH = 600
+SCREEN_HEIGHT = 600
+
 # define screen object attributes
 scr = Screen()
-scr.setup(width=600, height=600)
+scr.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 scr.bgcolor("black")
 scr.title("Snake Game")
 scr.tracer(0)
@@ -38,6 +41,17 @@ while not game_over:
     if ekans.snake_body[0].distance(food) < 15:
         food.refresh_location()
         scoreboard.refresh_score()
+
+    # Detect collision with snake head and wall
+    if (ekans.snake_body[0].xcor() < -(SCREEN_WIDTH / 2) + 20 or
+            ekans.snake_body[0].xcor() > (SCREEN_WIDTH / 2) - 20 or
+            ekans.snake_body[0].ycor() < -(SCREEN_HEIGHT / 2) + 20 or
+            ekans.snake_body[0].ycor() > (SCREEN_HEIGHT / 2) - 20
+    ):
+        game_over = True
+
+scoreboard.game_over()
+
 
 # only exit the screen on click of mouse - keeps window visible
 scr.exitonclick()
