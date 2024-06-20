@@ -22,11 +22,22 @@ class Snake:
         # create three Turtle objects
         # each Turtle should be a white square (default size:20x20)
         for body_index in range(0, 3):
-            body_part = Turtle(shape="square")
-            body_part.color("white")
-            body_part.penup()
-            body_part.goto(0 - (body_index * 20), 0)
-            self.snake_body.append(body_part)
+            self.add_segment(sequence=body_index)
+
+    def add_segment(self, sequence):
+        body_part = Turtle(shape="square")
+        body_part.color("white")
+        body_part.penup()
+        if not self.snake_body or len(self.snake_body) < 3:
+            if sequence:
+                body_part.goto(0 - (sequence * 20), 0)
+        else:
+            body_part.goto(self.snake_body[-1].position())
+        self.snake_body.append(body_part)
+
+    def grow(self):
+        # add a new segment to the snake
+        self.add_segment("")
 
     def move_forward(self):
         """
