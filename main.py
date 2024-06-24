@@ -53,11 +53,10 @@ while not game_over:
 
     # Detect collision with tail
     # loop through each segment of the snake body (ignoring the head in if statement)
-    # if the head is of a distance less than 10 spaces of a segment in the body then game over
-    for segment in ekans.snake_body:
-        if segment == ekans.snake_body[0]:
-            pass
-        elif ekans.snake_body[0].distance(segment) < 10:
+    # if the head is of a distance less than 10 pixels of a segment in the body then game over
+    # for segment in ekans.snake_body:
+    for segment in ekans.snake_body[1:]:
+        if ekans.snake_body[0].distance(segment) < 10:
             game_over = True
 
 
