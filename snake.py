@@ -90,3 +90,10 @@ class Snake:
         """
         if self.snake_body[0].heading() == LEFT or self.snake_body[0].heading() == RIGHT:
             self.snake_body[0].setheading(DOWN)
+
+
+    def reset(self):
+        for seg in self.snake_body:
+            seg.goto(1000, 1000)
+        self.snake_body.clear()
+        self.create_snake()

@@ -41,7 +41,7 @@ while not game_over:
     if ekans.snake_body[0].distance(food) < 15:
         food.refresh_location()  # change location of the food
         ekans.grow()  # when snake eats food increase in size
-        scoreboard.refresh_score()  # update scoreboard
+        scoreboard.increase_score()  # update scoreboard
 
     # Detect collision with snake head and wall
     if (ekans.snake_body[0].xcor() < -(SCREEN_WIDTH / 2) + 20 or
@@ -49,7 +49,8 @@ while not game_over:
             ekans.snake_body[0].ycor() < -(SCREEN_HEIGHT / 2) + 20 or
             ekans.snake_body[0].ycor() > (SCREEN_HEIGHT / 2) - 20
     ):
-        game_over = True
+        scoreboard.reset()
+        ekans.reset()
 
     # Detect collision with tail
     # loop through each segment of the snake body (ignoring the head in if statement)
@@ -57,10 +58,9 @@ while not game_over:
     # for segment in ekans.snake_body:
     for segment in ekans.snake_body[1:]:
         if ekans.snake_body[0].distance(segment) < 10:
-            game_over = True
+            scoreboard.reset()
+            ekans.reset()
 
-
-scoreboard.game_over()
 
 
 # only exit the screen on click of mouse - keeps window visible
